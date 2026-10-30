@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de clientes</title>
+</head>
+<body>
+
+<!--Implementamos el navbar-->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1 th:text="${customer.id == null ? 'Registrar cliente' : 'Editar cliente'}">
+    Formulario de clientes
+</h1>
+
+
+<form th:action="@{/clientes/guardar}"
+      th:object="${customer}"
+      method="post">
+
+
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+        <label for="name">Nombre completo:</label>
+        <input type="text" id="name" th:field="*{name}">
+
+
+        <p th:if="${#fields.hasErrors('name')}"
+           th:errors="*{name}"></p>
+    </div>
+
+    <div>
+        <label for="documentType">Tipo de documento:</label>
+
+
+        <select id="documentType" th:field="*{documentType}">
+            <!-- Opción inicial vacía -->
+            <option value="">Seleccione un tipo</option>
+            <option value="DNI">DNI</option>
+            <option value="RUC">RUC</option>
+        </select>
+
+
+        <p th:if="${#fields.hasErrors('documentType')}"
+           th:errors="*{documentType}"></p>
+    </div>
+
+    <div>
+        <label for="document">Número de documento:</label>
+
+
+        <input type="text" id="document" th:field="*{document}">
+
+
+        <p th:if="${#fields.hasErrors('document')}"
+           th:errors="*{document}"></p>
+    </div>
+
+
+    <button type="submit">Guardar</button>
+
+
+    <a th:href="@{/clientes}">Cancelar</a>
+
+</form>
+
+</body>
+</html>

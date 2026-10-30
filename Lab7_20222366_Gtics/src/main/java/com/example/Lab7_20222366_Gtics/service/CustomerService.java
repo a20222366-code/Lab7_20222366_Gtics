@@ -1,7 +1,6 @@
 package com.example.Lab7_20222366_Gtics.service;
 
 
-
 import com.example.Lab7_20222366_Gtics.entity.Customer;
 import com.example.Lab7_20222366_Gtics.repository.CustomerRepository;
 import org.springframework.stereotype.Service;

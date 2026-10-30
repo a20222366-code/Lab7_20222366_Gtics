@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de producto</title>
+</head>
+
+<body>
+
+<!-- Inserta la barra de navegación reutilizable -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1 th:text="${product.id == null ? 'Registrar producto' : 'Editar producto'}">
+    Formulario de producto
+</h1>
+
+<form th:action="@{/productos/guardar}"
+      th:object="${product}"
+      method="post"
+      novalidate>
+
+
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+
+        <label for="name">Nombre:</label>
+
+
+        <input type="text" id="name" th:field="*{name}" required>
+
+
+        <p th:if="${#fields.hasErrors('name')}"
+           th:errors="*{name}"></p>
+    </div>
+
+    <div>
+        <label for="price">Precio:</label>
+
+
+        <input type="number" id="price" th:field="*{price}"
+               step="0.01">
+
+
+
+        <p th:if="${#fields.hasErrors('price')}"
+           th:errors="*{price}"></p>
+    </div>
+
+    <div>
+        <label for="stock">Stock:</label>
+
+
+
+        <input type="number" id="stock" th:field="*{stock}"
+               step="1">
+
+
+        <p th:if="${#fields.hasErrors('stock')}"
+           th:errors="*{stock}"></p>
+    </div>
+
+
+    <button type="submit">Guardar</button>
+
+
+    <a th:href="@{/productos}">Cancelar</a>
+
+</form>
+
+</body>
+</html>

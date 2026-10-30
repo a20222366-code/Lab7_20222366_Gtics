@@ -1,7 +1,7 @@
 package com.example.Lab7_20222366_Gtics.entity;
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Pattern;
 @Entity
 @Table(name = "customer")
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
